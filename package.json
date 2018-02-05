@@ -1,0 +1,33 @@
+{
+  "name": "react-backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "@types/googlemaps": "^3.30.5",
+    "@types/markerclustererplus": "^2.1.33",
+    "@types/react": "^15.6.12",
+    "axios": "^0.17.1",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "dotenv": "",
+    "express": "~4.15.5",
+    "google-map-react": "",
+    "heroku": "^0.2.0",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0",
+    "pg-promise": "^7.4.1",
+    "pug": "^2.0.0-rc.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-geolocation": "",
+    "react-google-map": "",
+    "react-google-maps": "",
+    "react-google-maps-loader": "",
+    "react-router-dom": "",
+    "serve-favicon": "~2.4.5"
+  }
+}
