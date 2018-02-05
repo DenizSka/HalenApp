@@ -1,4 +1,3 @@
-# project-4
 
 <h1>Halen App - React &amp; Google Map API</h1>
 
