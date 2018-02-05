@@ -1,10 +1,7 @@
 # project-4
 
-<h1>Project 4 - React &amp; Google Map API</h1>
+<h1>Halen App - React &amp; Google Map API</h1>
 
-<h1><strong>IMPORTANT NOTE: </strong> Please see the repository below for the final work. (The new repository works with Express on the backend)</h1> 
-https://git.generalassemb.ly/denizs/halenexpress.git
-</br>
 
 <p>
 You want to go to an event but are too lazy to go far or do not like planing ahead of time. With Project-4 app you can simply log-in search the events around your area on the day of the event with just one click. Using geolocation coordinates, the Google Places API and SoundKick API when the app loads, the user will see a map that is focused in on their current location and all the events within a 5000 meter radius are indicated with a guitar emoji. 
