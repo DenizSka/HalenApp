@@ -1,14 +1,10 @@
 {
-  "name": "HalenApp",
+  "name": "react-backend",
   "version": "0.0.0",
   "private": true,
-  "main": "index.js",
   "scripts": {
-    "start": "node ./bin/www",
-    "heroku-postbuild": "cd client && npm install && npm run build && npm prune --production"
+    "start": "node ./bin/www"
   },
-
-
   "dependencies": {
     "@types/googlemaps": "^3.30.5",
     "@types/markerclustererplus": "^2.1.33",
