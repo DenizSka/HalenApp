@@ -8,10 +8,6 @@
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
 
-//   "scripts": {
-//   "start": "node index.js",
-//   "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
-// },
 
   "dependencies": {
     "@types/googlemaps": "^3.30.5",
