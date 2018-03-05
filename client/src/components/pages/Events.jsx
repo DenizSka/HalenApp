@@ -2,24 +2,6 @@ import React, { Component } from 'react';
 // import MoreInfo from "./MoreInfo";
 import SingleEvent from "./SingleEvent";
 
-/*
-const SingleEvent = (props) => (
-    <div className="eventlist">
-    <h1>List of Events</h1>
-      {props.apiData.map((event, index)=> (
-        <ul>
-      <li key={index}>
-        Name: {event.displayName}
-        <button> more </button>
-
-      </li>
-      </ul>
-          ))}
-  </div>
-);
-
-*/
-
 
 class Events extends Component {
   constructor(props) {

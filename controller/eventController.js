@@ -3,17 +3,47 @@ const eventsDB = require('../models/EventsDB');
 module.exports = {
 
   index(req, res, next) {
-    eventsDB.findAll()
+    function(req, res, next) {
+        axios.get(`https://api.songkick.com/api/3.0/metro_areas/7644/calendar.json?apikey=bykUUqMTtEu6iQV2`)
+        .then((songkickResponse) => {
+          // console.log('backend', songkickResponse.data.resultsPage.results.event)
+          res.json(songkickResponse.data.resultsPage.results.event)
+          /*
+          this.setState({
+            apiData: res.data.resultsPage.results.event,
+            apiDataLoaded: true,
+          });
+          */
+        })
+        .catch(err => console.log(err));
+},
+
+  indexed(req, res, next) {
+    function(req, res, next) {
+      eventsDB.findAll()
       .then((events) => {
-        res.status(200).json({
-          message: 'success',
-          data: {
-            events,
-          },
-        });
-      })
-      .catch(err => next(err));
+        res.json({ events: events})
+      }).catch((err) => { console.log(err); next(err)})
+},
+
+
+  save(req, res, next) {
+    function(req, res, next) {
+      let eventsBody = req.body
+      let event = {
+       displayName: eventsBody.displayName,
+       type: eventsBody.type,
+       venue: eventsBody.venue,
+       dateEvent: eventsBody.dateEvent,
+       uri: eventsBody.uri
+      }
+
+      eventsDB.save(event)
+      .then((events) => {res.json(events)})
+      .catch((err) => { console.log(err); next(err)})
+    });
   },
+
 
   getOne(req, res, next) {
     eventsDB.findById(req.params.id)
@@ -45,20 +75,6 @@ module.exports = {
   //     .catch(err => next(err));
   // },
 
-  // update(req, res, next) {
-  //   eventsDB.update({
-  //     name: req.body.name,
-  //     city: req.body.city,
-  //     formated_address: req.body.formatted_address,
-  //     description: req.body.description,
-  //   }, req.params.id).then((event) => {
-  //     console.log(event, 'after post');
-  //     res.json({
-  //       message: 'event updated successfully!',
-  //       data: { event },
-  //     });
-  //   }).catch(err => next(err));
-  // },
 
   destroy(req, res, next) {
     eventsDB.destroy(req.params.id)

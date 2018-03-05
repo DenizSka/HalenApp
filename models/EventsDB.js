@@ -21,10 +21,10 @@ module.exports = {
   },
 
   save(event) {
-    // console.log('this is event in model:', events);
+    console.log('this is event in model:', events);
     return db.one(`
-       INSERT INTO events (displayName, type, venue, dateEvent, url) VALUES ($1 ,$2 ,$3, $4, $5) RETURNING *
-      `, [event.displayName, event.type, event.venue, event.dateEvent, event.url]);
+       INSERT INTO events (displayName, type, venue, dateEvent, uri) VALUES ($1 ,$2 ,$3, $4, $5) RETURNING *
+      `, [event.displayName, event.type, event.venue, event.dateEvent, event.uri]);
   },
 
 

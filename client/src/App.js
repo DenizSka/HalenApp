@@ -11,7 +11,7 @@ import hoistNonReactStatics from 'hoist-non-react-statics';
 import axios from 'axios';
 import { render } from 'react-dom';
 import "./App.css";
-import { PastEvents} from "./components/pages/PastEvents";
+import PastEvents from "./components/pages/PastEvents";
 import { NavBar } from "./components/elements/NavBar";
 
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
