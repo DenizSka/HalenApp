@@ -19,7 +19,6 @@ class App extends Component {
     this.state = {
       apiData: null,
       apiDataLoaded: false,
-
     };
     // this.handleMarkerClick = this.handleMarkerClick.bind(this);
     this.handleAxiosCall = this.handleAxiosCall.bind(this);
@@ -45,7 +44,7 @@ class App extends Component {
           console.log(res.data)
           this.setState({
             apiData: res.data,
-            apiDataLoaded: true,
+            apiDataLoaded: true
           });
         })
         .catch(err => console.log(err));

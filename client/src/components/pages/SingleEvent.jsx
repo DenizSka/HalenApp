@@ -18,7 +18,7 @@ class SingleEvent extends Component {
     let event = this.props.event
     return (
 
-    <div className="event-list">
+    <div className="singleresult">
         {event.displayName}
         { !this.state.showMore &&
           <button className="button medium" onClick={this.handleShowMore}> See More</button>
@@ -47,10 +47,10 @@ class SingleEvent extends Component {
       dateEvent: event.start.date,
       url: event.uri
     })
-        .then((res) => {
+      .then((res) => {
           // console.log("api returned: ", res.data)
-          this.setState({showMore: false})
-        })
+        this.setState({showMore: false})
+      })
         .catch(err => console.log(err));
   }
 }
