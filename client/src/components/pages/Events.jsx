@@ -4,7 +4,7 @@ import SingleEvent from "./SingleEvent";
 import { render } from 'react-dom';
 import Geolocation from "react-geolocation";
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { compose, withProps, withStateHandlers } from "recompose"
+import { compose, withProps, withStateHandlers, lifecycle } from "recompose"
 import ReactGoogleMapLoader from "react-google-maps-loader";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow} from "react-google-maps";
 import "./css/Events.css";
@@ -66,7 +66,6 @@ class Events extends Component {
         isMarkerShown={this.state.isMarkerShown}
         // onMarkerClick={this.handleMarkerClick}
         position={this.state.position}
-
       />
       </div>
       </section>
@@ -97,7 +96,7 @@ const Maps = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div className="map" style={{ height: `1000px`, width: `1500px`}} />,
+    containerElement: <div className="map" style={{ height: `1000px`, width: `700px`}} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withStateHandlers(() => ({
@@ -107,20 +106,37 @@ const Maps = compose(
       isOpen: !isOpen,
     })
   }),
+  lifecycle({
+    componentWillMount() {
+        const refs = {}
+        this.setState({
+            onMarkerMounted: ref => {
+                refs.marker = ref;
+            },
+            onPositionChanged: () => {
+                const position = refs.marker.getPosition();
+                console.log('drag', position.toString());
+            }
+        })
+    },
+  }),
   withScriptjs,
   withGoogleMap,
 )((props) =>
   <GoogleMap
     defaultZoom={15}
-    defaultCenter={props.position || { lat: 40.7831, lng: -73.9712 }}
+    center={props.position || { lat: 40.7150, lng: -73.9843 }}
   >
     <MarkerWithLabel
       position={props.position || { lat: 40.7831, lng: -73.9712 }}
       labelAnchor={new window.google.maps.Point(0, 0)}
       labelStyle={{background: "white", fontSize: "15px", padding: "10px"}}
+      draggable={true}
+      ref={props.onMarkerMounted}
+      onPositionChanged={props.onPositionChanged}
     >
-      <div>You are Here!</div>
-    </MarkerWithLabel>
+      <div>You are Here! </div>
+    </MarkerWithLabel>}
   </GoogleMap>
 );
 
