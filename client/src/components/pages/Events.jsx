@@ -6,32 +6,32 @@ import Geolocation from "react-geolocation";
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { compose, withProps, withStateHandlers, lifecycle } from "recompose"
 import ReactGoogleMapLoader from "react-google-maps-loader";
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow} from "react-google-maps";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow, DirectionsRenderer} from "react-google-maps";
 import "./css/Events.css";
+
 
 class Events extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      directions: [],
       showMore: false,
       isMarkerShown: false,
     };
     this.delayedShowMarker = this.delayedShowMarker.bind(this);
-    this.handleLocationCall = this.handleLocationCall.bind(this);
+    // this.handleLocationCall = this.handleLocationCall.bind(this);
     this.handleShowMore = this.handleShowMore.bind(this);
   }
 
   componentDidMount() {
     this.delayedShowMarker();
-    this.handleLocationCall();
+    // this.handleLocationCall();
   }
 
-  handleLocationCall(){
-    const directions = this.props.apiData.map((latlong => latlong.directions));
-    this.setState({directions: directions});
-    console.log('state', this.state.directions)
-  }
+  // handleLocationCall(){
+  //   const directions = this.props.apiData.map((latlong => latlong.directions));
+  //   this.setState({directions: directions});
+  //   console.log('state inside location call', this.state.directions)
+  // }
 
 
   delayedShowMarker() {
@@ -46,7 +46,9 @@ class Events extends Component {
     <div className="event-list">
       <section className="googlemap">
       <Geolocation
-      onSuccess={ (position) => {this.setState({position: {lat: position.coords.latitude, lng: position.coords.longitude}}); console.log(position)}}
+      onSuccess={
+        (position) => {this.setState({position: {lat: position.coords.latitude, lng: position.coords.longitude}});
+        console.log(position)}}
       render={({
         fetchingPosition,
         position: { coords: { latitude, longitude } = {} } = {},
@@ -62,10 +64,11 @@ class Events extends Component {
         </div>}
     />
       <div id="relative">
-      <Maps
+      <MapWithADirectionsRenderer
         isMarkerShown={this.state.isMarkerShown}
         // onMarkerClick={this.handleMarkerClick}
         position={this.state.position}
+
       />
       </div>
       </section>
@@ -77,6 +80,7 @@ class Events extends Component {
 
           <div className="resultssection" key={index}>
           <SingleEvent event={event}/>
+
           </div>
 
               ))}
@@ -92,11 +96,11 @@ class Events extends Component {
 
 
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
-const Maps = compose(
+const MapWithADirectionsRenderer =  compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div className="map" style={{ height: `1000px`, width: `700px`}} />,
+    containerElement: <div className="map" style={{ height: `1000px`, width: `680px`}} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withStateHandlers(() => ({
@@ -106,38 +110,47 @@ const Maps = compose(
       isOpen: !isOpen,
     })
   }),
-  lifecycle({
-    componentWillMount() {
-        const refs = {}
-        this.setState({
-            onMarkerMounted: ref => {
-                refs.marker = ref;
-            },
-            onPositionChanged: () => {
-                const position = refs.marker.getPosition();
-                console.log('drag', position.toString());
-            }
-        })
-    },
-  }),
-  withScriptjs,
+    withScriptjs,
   withGoogleMap,
+
+  lifecycle({
+    componentDidMount() {
+      const google = window.google;
+      const DirectionsService = new google.maps.DirectionsService();
+      // const DirectionsDisplay = new google.maps.DirectionsRenderer();
+      DirectionsService.route({
+        origin: new google.maps.LatLng(41.8525800, -87.6514100),
+        destination: new google.maps.LatLng(41.8525800, -87.6514100),
+        travelMode: google.maps.TravelMode.DRIVING,
+      }, (result, status) => {
+        if (status === google.maps.DirectionsStatus.OK) {
+          this.setState({
+            directions: result,
+          });
+        } else {
+          console.error(`error fetching directions ${result}`);
+        }
+      });
+    }
+  })
 )((props) =>
   <GoogleMap
     defaultZoom={15}
     center={props.position || { lat: 40.7150, lng: -73.9843 }}
   >
+  {props.directions && <DirectionsRenderer directions={props.directions} />}
+
     <MarkerWithLabel
       position={props.position || { lat: 40.7831, lng: -73.9712 }}
       labelAnchor={new window.google.maps.Point(0, 0)}
       labelStyle={{background: "white", fontSize: "15px", padding: "10px"}}
-      draggable={true}
-      ref={props.onMarkerMounted}
       onPositionChanged={props.onPositionChanged}
     >
       <div>You are Here! </div>
     </MarkerWithLabel>}
   </GoogleMap>
 );
+
+
 
 export default Events;
