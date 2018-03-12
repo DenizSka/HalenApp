@@ -6,5 +6,5 @@ CREATE TABLE IF NOT EXISTS events (
   type VARCHAR(255),
   venue VARCHAR(255),
   dateEvent VARCHAR(255),
-  url VARCHAR(16384)
+  uri VARCHAR(16384)
 );

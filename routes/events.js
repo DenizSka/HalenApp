@@ -6,7 +6,9 @@ const eventController = require('../controller/eventController');
 
 
 eventRouter.route('/')
-  .get(eventController.index);
+  .get(eventController.index)
+  .post(eventController.create);
+
 
 
 module.exports = eventRouter;

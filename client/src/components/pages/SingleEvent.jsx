@@ -45,10 +45,10 @@ class SingleEvent extends Component {
       type: event.type,
       venue: event.venue.displayName,
       dateEvent: event.start.date,
-      url: event.uri
+      uri: event.uri
     })
       .then((res) => {
-          // console.log("api returned: ", res.data)
+          console.log("api returned: ", res.data)
         this.setState({showMore: false})
       })
         .catch(err => console.log(err));

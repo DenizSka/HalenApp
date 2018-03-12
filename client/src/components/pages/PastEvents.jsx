@@ -36,7 +36,7 @@ class PastEvents extends Component {
                     <p>  Type: {event.type} </p>
                     <p>  Venue: {event.venue} </p>
                     <p>  Date: {event.dateevent} </p>
-                    <p>  URL: <a className= "singleEvent" href={event.url}> See Event Page </a> </p>
+                    <p>  URL: <a className= "singleEvent" href={event.uri}> See Event Page </a> </p>
                   </div>
                       ))}
                 </div>) : (

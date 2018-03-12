@@ -19,6 +19,7 @@ module.exports = {
   },
 
   pastindex(req, res, next) {
+    console.log('in pastindex function');
       eventsDB.findAll()
       .then((events) => {
         res.json({ events: events})
@@ -26,7 +27,8 @@ module.exports = {
   },
 
 
-  save(req, res, next) {
+  create(req, res, next) {
+    console.log('in save function');
       let eventsBody = req.body
       let event = {
        displayName: eventsBody.displayName,
