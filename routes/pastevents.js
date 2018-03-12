@@ -1,12 +1,11 @@
 var express = require('express');
 var eventRouter = express.Router();
-var EventsDB = require('../models/EventsDB');
 const eventController = require('../controller/eventController');
 
 /* GET home page. */
 
 eventRouter.route('/pastevents')
-  .get(eventController.indexed)
+  .get(eventController.pastindex)
   .put(eventController.save)
   .delete(eventController.destroy);
 
@@ -32,4 +31,4 @@ eventRouter.route('/pastevents')
 //   .catch((err) => { console.log(err); next(err)})
 // });
 
-module.exports = router;
+module.exports = eventRouter;

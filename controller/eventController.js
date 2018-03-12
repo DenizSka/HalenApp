@@ -1,34 +1,32 @@
 const eventsDB = require('../models/EventsDB');
+const axios = require('axios');
 
 module.exports = {
 
   index(req, res, next) {
-    function(req, res, next) {
-        axios.get(`https://api.songkick.com/api/3.0/metro_areas/7644/calendar.json?apikey=bykUUqMTtEu6iQV2`)
-        .then((songkickResponse) => {
-          // console.log('backend', songkickResponse.data.resultsPage.results.event)
-          res.json(songkickResponse.data.resultsPage.results.event)
-          /*
-          this.setState({
-            apiData: res.data.resultsPage.results.event,
-            apiDataLoaded: true,
-          });
-          */
-        })
-        .catch(err => console.log(err));
-},
+      axios.get(`https://api.songkick.com/api/3.0/metro_areas/7644/calendar.json?apikey=bykUUqMTtEu6iQV2`)
+      .then((songkickResponse) => {
+        console.log('backend', songkickResponse.data.resultsPage.results.event)
+        res.json(songkickResponse.data.resultsPage.results.event)
+        /*
+        this.setState({
+          apiData: res.data.resultsPage.results.event,
+          apiDataLoaded: true,
+        });
+        */
+      })
+      .catch(err => console.log(err));
+  },
 
-  indexed(req, res, next) {
-    function(req, res, next) {
+  pastindex(req, res, next) {
       eventsDB.findAll()
       .then((events) => {
         res.json({ events: events})
       }).catch((err) => { console.log(err); next(err)})
-},
+  },
 
 
   save(req, res, next) {
-    function(req, res, next) {
       let eventsBody = req.body
       let event = {
        displayName: eventsBody.displayName,
@@ -36,12 +34,10 @@ module.exports = {
        venue: eventsBody.venue,
        dateEvent: eventsBody.dateEvent,
        uri: eventsBody.uri
-      }
-
+      };
       eventsDB.save(event)
       .then((events) => {res.json(events)})
       .catch((err) => { console.log(err); next(err)})
-    });
   },
 
 
@@ -84,7 +80,6 @@ module.exports = {
         });
       })
       .catch(err => next(err));
-  },
+  }
 
 };
-
