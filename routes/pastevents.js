@@ -4,9 +4,10 @@ const eventController = require('../controller/eventController');
 
 /* GET past events */
 
-eventRouter.route('/pastevents')
+eventRouter.route('/')
   .get(eventController.pastindex)
-  .delete(eventController.destroy);
+  .put(eventController.create);
+  // .delete(eventController.destroy);
 
 // router.get('/', function(req, res, next) {
 //   EventsDB.findAll()

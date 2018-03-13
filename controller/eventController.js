@@ -38,9 +38,19 @@ module.exports = {
        uri: eventsBody.uri
       };
       eventsDB.save(event)
-      .then((events) => {res.json(events)})
-      .catch((err) => { console.log(err); next(err)})
+      .then((events) => {
+        console.log(`this is the thing I want to see ${json.stringify(events)}`);
+        res.json({
+          message: 'event added successfully!',
+          data: { events },
+        });
+      })
+      .catch(err => next(err));
   },
+
+  //       res.json(events)})
+  //     .catch((err) => { console.log(err); next(err)})
+  // },
 
 
   getOne(req, res, next) {

@@ -6,8 +6,7 @@ const eventController = require('../controller/eventController');
  // GET home page.
 
 eventRouter.route('/')
-  .get(eventController.index)
-  .put(eventController.create);
+  .get(eventController.index);
 
 
 

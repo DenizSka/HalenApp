@@ -1,6 +1,8 @@
-const db = require('../config/config');
-// const pgp = require('pg-promise')();
-// const db = pgp(dbConfig);
+const dbConfig = require('../config/config');
+// * CRUD methods in SQL to talk to the database.
+ // * Each function returns a promise
+const pgp = require('pg-promise')();
+const db = pgp(dbConfig);
 
 
 module.exports = {
