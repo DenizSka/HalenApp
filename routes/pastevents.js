@@ -2,7 +2,7 @@ var express = require('express');
 var eventRouter = express.Router();
 const eventController = require('../controller/eventController');
 
-/* GET home page. */
+/* GET past events */
 
 eventRouter.route('/pastevents')
   .get(eventController.pastindex)

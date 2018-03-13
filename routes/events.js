@@ -3,11 +3,11 @@ const eventRouter = express.Router();
 const eventController = require('../controller/eventController');
 
 
-
+ // GET home page.
 
 eventRouter.route('/')
   .get(eventController.index)
-  .post(eventController.create);
+  .put(eventController.create);
 
 
 

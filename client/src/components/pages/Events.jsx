@@ -111,20 +111,21 @@ const MapWithADirectionsRenderer =  compose(
     })
   }),
     withScriptjs,
-  withGoogleMap,
+    withGoogleMap,
 
   lifecycle({
     componentDidMount() {
       const google = window.google;
-      const DirectionsService = new google.maps.DirectionsService();
+      const DirectionsService = new google.maps.DirectionsService()
       // const DirectionsDisplay = new google.maps.DirectionsRenderer();
       DirectionsService.route({
-        origin: new google.maps.LatLng(41.8525800, -87.6514100),
-        destination: new google.maps.LatLng(41.8525800, -87.6514100),
+        destination: new google.maps.LatLng(40.7831, -73.9712),
         travelMode: google.maps.TravelMode.DRIVING,
+        // zoom: 20,
       }, (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
           this.setState({
+            origin: result,
             directions: result,
           });
         } else {
@@ -135,10 +136,10 @@ const MapWithADirectionsRenderer =  compose(
   })
 )((props) =>
   <GoogleMap
-    defaultZoom={10}
+    defaultZoom={13}
     center={props.position || { lat: 40.7150, lng: -73.9843 }}
   >
-  {props.directions && <DirectionsRenderer directions={props.directions} />}
+  {props.directions && <DirectionsRenderer directions={props.directions} origin={props.position} />}
 
     <MarkerWithLabel
       position={props.position || { lat: 40.7831, lng: -73.9712 }}
