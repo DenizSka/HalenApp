@@ -101,7 +101,7 @@ render() {
             <img src="../master/live_images/MainPage.png" width="400"/>
     </p>
     <p>  <h3> More Info Section </h3><br>
-            <img src="../master/live_images/MoreInfo.png" width="400"/>
+            <img src="../master/live_images/More_Info.png" width="400"/>
     </p>
 
 
