@@ -32,9 +32,9 @@ https://fervent-ardinghelli-68c8cd.netlify.com/
 
 <ul><h2> Technologies Needed: </h2></ul>
 
-<li>React</li> 
+<li> React</li> 
 <li> Axios </li>
-<li> Ruby Rails </li>
+<li> Express </li>
 <li> Google Geocoding API</li>
 <li> Google Places API</li>
 <li> Songkick or Bandsintown API</li>
@@ -95,6 +95,15 @@ render() {
       }
     }
 </p>
+
+<h1> MVP of the live app: </h1>
+    <p>  <h3> Map View </h3><br>
+            <img src="../master/live_images/MainPage.png" width="300"/>
+    </p>
+    <p>  <h3> More Info Section </h3><br>
+            <img src="../master/live_images/MoreInfo.png" width="300"/>
+    </p>
+
 
 <h1>Complications:</h1>
 <ul>
