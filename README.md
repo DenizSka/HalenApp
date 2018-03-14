@@ -98,10 +98,10 @@ render() {
 
 <h1> MVP of the live app: </h1>
     <p>  <h3> Map View </h3><br>
-            <img src="../master/live_images/MainPage.png" width="300"/>
+            <img src="../master/live_images/MainPage.png" width="400"/>
     </p>
     <p>  <h3> More Info Section </h3><br>
-            <img src="../master/live_images/MoreInfo.png" width="300"/>
+            <img src="../master/live_images/MoreInfo.png" width="400"/>
     </p>
 
 
