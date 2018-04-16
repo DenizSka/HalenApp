@@ -6,7 +6,7 @@ const eventController = require('../controller/eventController');
 
 eventRouter.route('/')
   .get(eventController.pastindex)
-  .put(eventController.create);
+  .post(eventController.create);
   // .delete(eventController.destroy);
 
 // router.get('/', function(req, res, next) {

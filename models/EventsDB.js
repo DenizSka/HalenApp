@@ -21,11 +21,12 @@ module.exports = {
   },
 
   save(event) {
-    console.log('this is save in model:', events);
+    console.log('this is save in model:', event);
     return db.one(`
-       INSERT INTO events (displayName, type, venue, dateEvent, uri) VALUES ($1 ,$2 ,$3, $4, $5) RETURNING *
-      `, [event.displayName, event.type, event.venue, event.dateEvent, event.uri]);
+       INSERT INTO events (displayName, type, venue, dateEvent, uri) VALUES ($/displayName/, $/type/, $/venue/, $/dateEvent/, $/uri/) RETURNING *
+      `, event);
   },
+
 
 
   // update(event, id) {

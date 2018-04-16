@@ -27,19 +27,22 @@ module.exports = {
   },
 
 
+
   create(req, res, next) {
     console.log('in save function');
       let eventsBody = req.body
-      let event = {
+      let oneEvent = {
        displayName: eventsBody.displayName,
        type: eventsBody.type,
        venue: eventsBody.venue,
        dateEvent: eventsBody.dateEvent,
        uri: eventsBody.uri
       };
-      eventsDB.save(event)
+      res.locals.event = oneEvent;
+      eventsDB.save(oneEvent)
       .then((events) => {
-        console.log(`this is the thing I want to see ${json.stringify(events)}`);
+        res.locals.events = events;
+        console.log(`this is the thing I want to see ${JSON.stringify(events)}`);
         res.json({
           message: 'event added successfully!',
           data: { events },

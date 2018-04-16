@@ -40,7 +40,7 @@ class SingleEvent extends Component {
 
   handleAdd(event) {
     console.log("event to be added, ", event)
-    axios.put(`/pastevents`, {
+    axios.post(`/pastevents`, {
       displayName: event.displayName,
       type: event.type,
       venue: event.venue.displayName,

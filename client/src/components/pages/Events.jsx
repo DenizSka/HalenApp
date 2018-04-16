@@ -57,6 +57,7 @@ class Events extends Component {
       }) =>
         <div className="googlemap">
           <button onClick={getCurrentPosition}>Get Position</button>
+
           {error &&
             <div>
               {error.message}

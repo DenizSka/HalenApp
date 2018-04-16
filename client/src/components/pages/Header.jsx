@@ -25,7 +25,7 @@ const Header = (props) => (
           <section>
             <span className="fa fa-cubes"></span>
             <header>
-              <h2>Last minute event planer</h2>
+              <h2>Last minute event planner</h2>
               <span className="byline">See today's events around you.</span>
             </header>
           </section>
