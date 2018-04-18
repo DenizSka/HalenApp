@@ -42,6 +42,7 @@ module.exports = {
   //     `, [event.city, event.name, event.formatted_address, event.description, id]);
   // },
 
+
   destroy(id) {
     return db.none(`
       DELETE

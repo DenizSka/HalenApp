@@ -9,6 +9,10 @@ eventRouter.route('/')
   .post(eventController.create);
   // .delete(eventController.destroy);
 
+
+eventRouter.route('/:id')
+  .delete(eventController.destroy);
+
 // router.get('/', function(req, res, next) {
 //   EventsDB.findAll()
 //   .then((events) => {

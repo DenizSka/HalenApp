@@ -61,10 +61,11 @@ class App extends Component {
       <section id="explore" className="clearfix">
         <main>
           <Switch>
+            <Route path="/home" component={Events} />
             <Route path="/pastevents" component={PastEvents} />
           </Switch>
         </main>
-        <aside>
+        <div>
           {this.state.apiDataLoaded ? (
             <div>
               <Events apiData={this.state.apiData}
@@ -72,7 +73,7 @@ class App extends Component {
             </div>) : (
               <p> Loading Events... </p>
           )}
-          </aside>
+          </div>
       </section>
 
       </div>

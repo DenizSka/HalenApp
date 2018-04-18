@@ -89,12 +89,11 @@ module.exports = {
 
   destroy(req, res, next) {
     eventsDB.destroy(req.params.id)
-      .then(() => {
-        res.json({
-          message: 'event has been deleted',
-        });
+      .then((event) => {
+        res.locals.event = event;
       })
       .catch(err => next(err));
   }
+
 
 };

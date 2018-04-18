@@ -9,23 +9,44 @@ class PastEvents extends Component {
       eventsData:[],
       eventsDataLoaded: false,
     };
+    // this.handleDelete = this.handleDelete.bind(this);
   }
 
-     componentDidMount() {
-      axios.get(`/pastevents`)
-        .then((res) => {
-          console.log('pastevents', res.data.events)
-          this.setState({
-            eventsData: res.data.events,
-            eventsDataLoaded: true,
-          });
-        })
-        .catch(err => console.log(err));
+    componentDidMount() {
+    axios.get(`/pastevents`)
+      .then((res) => {
+        console.log('pastevents', res.data.events)
+        this.setState({
+          eventsData: res.data.events,
+          eventsDataLoaded: true,
+        });
+      })
+      .catch(err => console.log(err));
     }
+
+
+
+//   handleDelete(event) {
+//     const data = {
+//       id: event.id
+//     }
+//     console.log(data);
+//     axios.delete(`/pastevents/`)
+//     .then(res => res.json())
+//           .then((data) => {
+//             if(data === "success"){
+//            this.setState({msg: "User has been deleted."});
+//         }
+//     }).catch(function(err) {
+//         console.log(err)
+//     });
+// }
+
+
 
     render() {
           return (
-            <section className="past">
+            <div className="past">
               <h1 className="pastmedium">Past Events List</h1>
               <div>
                 {this.state.eventsDataLoaded ? (
@@ -37,6 +58,7 @@ class PastEvents extends Component {
                     <p>  Venue: {event.venue} </p>
                     <p>  Date: {event.dateevent} </p>
                     <p>  URL: <a className= "singleEvent" href={event.uri}> See Event Page </a> </p>
+                    <button className="button medium" onClick={this.handleDelete} > Remove From List </button>
                   </div>
                       ))}
                 </div>) : (
@@ -44,7 +66,7 @@ class PastEvents extends Component {
                 )}
               </div>
 
-            </section>
+            </div>
           );
     }
 }

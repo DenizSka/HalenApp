@@ -4,15 +4,20 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+    "dev": "webpack --mode development",
+    "production": "webpack --mode production",
     "start": "node ./bin/www",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
     "@types/googlemaps": "^3.30.5",
     "@types/markerclustererplus": "^2.1.33",
     "@types/react": "^15.6.12",
     "axios": "^0.17.1",
     "babel": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
@@ -31,16 +36,18 @@
     "react-google-maps": "",
     "react-google-maps-loader": "",
     "react-router-dom": "",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "webpack": "^4.6.0"
   },
   "devDependencies": {
     "babel-core": "*",
-    "babel-loader": "*",
+    "babel-loader": "^8.0.0-beta.2",
     "babel-plugin-transform-object-rest-spread": "*",
     "babel-preset-env": "*",
     "babel-preset-es2015": "*",
     "babel-preset-react": "*",
     "babel-preset-stage-0": "*",
-    "babel-regenerator-runtime": "*"
+    "babel-regenerator-runtime": "*",
+    "webpack-cli": "^2.0.14"
   }
 }
