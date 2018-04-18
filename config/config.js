@@ -1,3 +1,4 @@
+
 const options = {
   query: (e) => {
     console.log(e.query);
@@ -7,13 +8,13 @@ const options = {
 const pgp = require('pg-promise')(options);
 
 const config = {
-  host: 'localhost',
-  port: 5432,
-  database: 'songkick_db',
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
 };
 
 function setDatabase() {
-  return pgp(config);
+  return pgp(process.env.DATABASE_URL || config);
 }
 
 const db = setDatabase();
